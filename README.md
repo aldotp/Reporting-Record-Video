@@ -1,18 +1,19 @@
-## Record Report
+# Record Report
 
-# Requirement
--- ffmpeg 
+## Requirement
+- ffmpeg 
+- record data (video)
 
-
-# How to install ffmpeg
-## Ubuntu
+## How to install ffmpeg
+### Ubuntu
 - sudo apt search ffmpeg
 - sudo apt install ffmpeg -y
-## Mac
+### Mac
 - brew install ffmpeg
 
-# Running
+## How to Run
+- put the record video in folder record
 - go run main.go
 
-# Output 
+## Output 
 ./report/report_XXXXX
