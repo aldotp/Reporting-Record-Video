@@ -51,6 +51,13 @@ func (report *RecordReport) Export() {
 		log.Fatal(err)
 	}
 
+	if _, err := os.Stat("report"); os.IsNotExist(err) {
+		err := os.Mkdir("report", 0755)
+		if err != nil {
+			log.Fatalf("Error creating report folder: %v", err)
+		}
+	}
+
 	saveFile := fmt.Sprintf("report/report_%s.json", report.StartTime)
 	if _, err := os.Stat(saveFile); err == nil {
 		if err := os.Remove(saveFile); err != nil {
