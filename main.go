@@ -51,13 +51,6 @@ func (report *RecordReport) Export() {
 		log.Fatal(err)
 	}
 
-	if _, err := os.Stat("report"); os.IsNotExist(err) {
-		err := os.Mkdir("report", 0755)
-		if err != nil {
-			log.Fatalf("Error creating report folder: %v", err)
-		}
-	}
-
 	saveFile := fmt.Sprintf("report/report_%s.json", report.StartTime)
 	if _, err := os.Stat(saveFile); err == nil {
 		if err := os.Remove(saveFile); err != nil {
@@ -79,6 +72,7 @@ const (
 )
 
 func main() {
+	Init()
 	GenerateReport("2024-01-09 00-00-00", "2024-01-10 00-00-00", directory).Export()
 	GenerateReport("2024-01-10 00-00-00", "2024-01-11 00-00-00", directory).Export()
 	GenerateReport("2024-01-11 00-00-00", "2024-01-12 00-00-00", directory).Export()
@@ -190,4 +184,13 @@ func GenerateReport(startDate, endDate string, dir string) *RecordReport {
 	}
 
 	return &report
+}
+
+func Init() {
+	if _, err := os.Stat("record"); os.IsNotExist(err) {
+		err := os.Mkdir("record", 0755)
+		if err != nil {
+			log.Fatalf("Error creating report folder: %v", err)
+		}
+	}
 }
