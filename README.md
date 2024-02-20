@@ -12,7 +12,7 @@
 - brew install ffmpeg
 
 ## How to Run
-- put the record video in folder record
+- put folder record into root
 - go run main.go
 
 ## Output 
