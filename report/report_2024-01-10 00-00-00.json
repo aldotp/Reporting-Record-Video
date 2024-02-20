@@ -2,11 +2,11 @@
     "start_time": "2024-01-10 00-00-00",
     "end_time": "2024-01-11 00-00-00",
     "result": {
-        "error_percentage": 0.0787037037037037,
-        "error_time": 68,
-        "record_percentage": 99.92129629629629,
-        "record_time": 86332,
-        "total_error": 2,
+        "error_percentage": 2.3518518518518516,
+        "error_time": 2032,
+        "record_percentage": 97.64814814814815,
+        "record_time": 84368,
+        "total_error": 7,
         "total_recording": 283,
         "total_time": 86400,
         "error": [
@@ -24,6 +24,46 @@
                 "time_error": {
                     "end_time": "2024-01-10 22-33-34",
                     "start_time": "2024-01-10 22-33-00"
+                }
+            },
+            {
+                "duration": 300,
+                "filename": "2024-01-10T06-08-00.mp4",
+                "time_error": {
+                    "end_time": "2024-01-10 06-08-00",
+                    "start_time": "2024-01-10 06-13-00"
+                }
+            },
+            {
+                "duration": 300,
+                "filename": "2024-01-10T06-13-00.mp4",
+                "time_error": {
+                    "end_time": "2024-01-10 06-13-00",
+                    "start_time": "2024-01-10 06-18-00"
+                }
+            },
+            {
+                "duration": 300,
+                "filename": "2024-01-10T12-13-00.mp4",
+                "time_error": {
+                    "end_time": "2024-01-10 12-13-00",
+                    "start_time": "2024-01-10 12-18-00"
+                }
+            },
+            {
+                "duration": 300,
+                "filename": "2024-01-10T12-18-00.mp4",
+                "time_error": {
+                    "end_time": "2024-01-10 12-18-00",
+                    "start_time": "2024-01-10 12-23-00"
+                }
+            },
+            {
+                "duration": 300,
+                "filename": "2024-01-10T12-23-00.mp4",
+                "time_error": {
+                    "end_time": "2024-01-10 12-23-00",
+                    "start_time": "2024-01-10 12-28-00"
                 }
             }
         ],

@@ -2,11 +2,11 @@
     "start_time": "2024-01-09 00-00-00",
     "end_time": "2024-01-10 00-00-00",
     "result": {
-        "error_percentage": 0.03935185185185185,
-        "error_time": 34,
-        "record_percentage": 99.96064814814815,
-        "record_time": 86366,
-        "total_error": 1,
+        "error_percentage": 1.3495370370370372,
+        "error_time": 1166,
+        "record_percentage": 98.65046296296296,
+        "record_time": 85234,
+        "total_error": 4,
         "total_recording": 285,
         "total_time": 86400,
         "error": [
@@ -16,6 +16,30 @@
                 "time_error": {
                     "end_time": "2024-01-09 05-38-34",
                     "start_time": "2024-01-09 05-38-00"
+                }
+            },
+            {
+                "duration": 300,
+                "filename": "2024-01-09T16-13-00.mp4",
+                "time_error": {
+                    "end_time": "2024-01-09 16-13-00",
+                    "start_time": "2024-01-09 16-18-00"
+                }
+            },
+            {
+                "duration": 300,
+                "filename": "2024-01-09T16-18-00.mp4",
+                "time_error": {
+                    "end_time": "2024-01-09 16-18-00",
+                    "start_time": "2024-01-09 16-23-00"
+                }
+            },
+            {
+                "duration": 300,
+                "filename": "2024-01-09T16-23-00.mp4",
+                "time_error": {
+                    "end_time": "2024-01-09 16-23-00",
+                    "start_time": "2024-01-09 16-28-00"
                 }
             }
         ],

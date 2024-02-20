@@ -126,7 +126,6 @@ func GenerateReport(startDate, endDate string, dir string) *RecordReport {
 
 	files := getRecordingFiles(startDate, endDate, dir)
 	totalRecord := len(files)
-	totalTime := 24 * 60 * 60 // 1 day
 
 	for _, filename := range files {
 		fileLoc := fmt.Sprintf("%s/%s", dir, filename)
@@ -144,7 +143,8 @@ func GenerateReport(startDate, endDate string, dir string) *RecordReport {
 			}
 
 			endTime := time.Date(startTime.Year(), startTime.Month(), startTime.Day(), startTime.Hour(), startTime.Minute(), duration, 0, startTime.Location())
-			errorTime += duration
+			erorrCalculation := 300 - duration
+			errorTime += erorrCalculation
 			errorDetails = append(errorDetails, ErrorDetail{
 				Duration: duration,
 				Filename: filename,
@@ -155,14 +155,45 @@ func GenerateReport(startDate, endDate string, dir string) *RecordReport {
 			})
 		}
 
+		recordTime += duration
 		recordingFiles = append(recordingFiles, RecordingFile{
 			Duration: duration,
 			Filename: filename,
 		})
 	}
 
-	recordTime = totalTime - errorTime
-	errorTime = totalTime - recordTime
+	// Parse start and end dates
+	parts := strings.Split(files[0], ".")
+	startTimeStr := parts[0]
+	startTime, err := time.Parse("2006-01-02T15-04-05", startTimeStr)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	endTime, err := time.Parse(layoutTime, endDate)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// find missing record
+	for t := startTime; t.Before(endTime); t = t.Add(5 * time.Minute) {
+		expectedFileName := t.Format("2006-01-02T15-04-05") + ".mp4"
+		if !contains(files, expectedFileName) {
+			errorDetails = append(errorDetails, ErrorDetail{
+				Duration: 300,
+				Filename: expectedFileName,
+				TimeError: TimeError{
+					EndTime:   t.Format(layoutTime),
+					StartTime: t.Add(5 * time.Minute).Format(layoutTime),
+				},
+			})
+		}
+	}
+
+	// calculate
+	externalError := 86400 - (recordTime + errorTime)
+	errorTime += externalError
+	totalTime := recordTime + errorTime
 	totalError := len(errorDetails)
 	errorPercentage = float64(errorTime) / float64(totalTime) * 100
 	recordPercentage = float64(recordTime) / float64(totalTime) * 100
@@ -193,4 +224,13 @@ func Init() {
 			log.Fatalf("Error creating report folder: %v", err)
 		}
 	}
+}
+
+func contains(arr []string, str string) bool {
+	for _, a := range arr {
+		if a == str {
+			return true
+		}
+	}
+	return false
 }
